@@ -7,9 +7,9 @@ mkdir -p /root/.ssh
 cp /autograder/source/ssh_config /root/.ssh/config
 
 
-apt-get install -y python3 python3-pip python3-dev
-pip3 install jsonschema
-pip3 install pytest
+apt-get install -y python3.12 python3-pip python3-dev
+python3.12 -m pip install jsonschema
+python3.12 -m pip install pytest
 
 
 # Make sure to include your private key here
@@ -26,7 +26,8 @@ ssh-keyscan -t rsa github.ucsb.edu >> ~/.ssh/known_hosts
 # Clone autograder files
 
 mkdir -p ${BASE_DIR}/${REPO_NAME}
-git clone ${GIT_REPO} ${BASE_DIR}/${REPO_NAME}
+git clone -b ${GIT_BRANCH} --single-branch ${GIT_REPO} ${BASE_DIR}/${REPO_NAME}
+
 
 if [ -f ${BASE_DIR}/${REPO_NAME}/MAKE-REFERENCE.sh ]; then
     echo "Installing software for submit.cs transition diff-based testing"
@@ -57,7 +58,7 @@ fi
 
 if [ -f ${BASE_DIR}/${REPO_NAME}/requirements3.txt ]; then
     echo "Installing Python3 requirements from ${GIT_REPO}/requirements.txt"
-    pip3 install -r ${BASE_DIR}/${REPO_NAME}/requirements3.txt
+    python3.12 -m pip install -r ${BASE_DIR}/${REPO_NAME}/requirements3.txt
 else
     echo "No requirements3.txt found in repo"
 fi
