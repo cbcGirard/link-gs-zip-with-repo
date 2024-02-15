@@ -7,10 +7,9 @@ mkdir -p /root/.ssh
 cp /autograder/source/ssh_config /root/.ssh/config
 
 
-apt-get install -y python3.12 python3-pip python3-dev
-python3.12 -m pip install jsonschema
-python3.12 -m pip install pytest
-
+apt-get install -y python3 python3-pip python3-dev
+pip3 install jsonschema
+pip3 install pytest
 
 # Make sure to include your private key here
 
@@ -58,7 +57,7 @@ fi
 
 if [ -f ${BASE_DIR}/${REPO_NAME}/requirements3.txt ]; then
     echo "Installing Python3 requirements from ${GIT_REPO}/requirements.txt"
-    python3.12 -m pip install -r ${BASE_DIR}/${REPO_NAME}/requirements3.txt
+    python${PY_VERSION} -m pip install -r ${BASE_DIR}/${REPO_NAME}/requirements3.txt
 else
     echo "No requirements3.txt found in repo"
 fi
