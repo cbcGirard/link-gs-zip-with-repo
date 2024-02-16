@@ -39,6 +39,10 @@ fi
 if [ -f ${BASE_DIR}/${REPO_NAME}/apt-get.sh ]; then
     echo "Installing Linux requirements from ${GIT_REPO}/apt-get.sh"
     chmod u+x ${BASE_DIR}/${REPO_NAME}/apt-get.sh
+    if [ -f{BASE_DIR}/${REPO_NAME}/py-version.sh ]; then
+        chmod u+x ${BASE_DIR}/${REPO_NAME}/py-version.sh
+        ${BASE_DIR}/${REPO_NAME}/py-version.sh
+    fi
     ${BASE_DIR}/${REPO_NAME}/apt-get.sh
 else
     echo "No apt-get.sh found in repo"
