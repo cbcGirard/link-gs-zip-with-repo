@@ -12,6 +12,11 @@ if [ -z "$GIT_BRANCH" ]; then
     GIT_BRANCH=master
 fi
 
+# If no python version is specified, default to system python3
+if [ -z "$PY_VERSION" ]; then
+    PY_VERSION=3
+fi
+
 echo \$BASE_DIR=$BASE_DIR
 echo \$GIT_REPO=$GIT_REPO
 echo \$REPO_NAME=$REPO_NAME
